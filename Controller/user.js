@@ -17,8 +17,8 @@ router.post('/user', function(req, res) {
   let data = {};
   data.listData = listData;
   data.count = count;
-  res.end(JSON.stringify(data));
-  // res.send(JSON.stringify(data));
+  // res.end(JSON.stringify(data));
+  res.send(JSON.stringify(data));
 });
 
 module.exports = router;
