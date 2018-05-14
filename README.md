@@ -1,11 +1,11 @@
 # 部署步骤
-1. https://nodejs.org/en/ // 安装node环境
+1. npm i           // 安装node环境
 
-2. node App.js            // 开启
+2. npm start       // 开启
 
 
 <pre># 目录结构描述
-├── App.js                      // 入口js
+├── app.js                      // 入口js
 ├── Controller                  // 控制器
 │   ├── user                    // 用户API
 </pre>
