@@ -5,10 +5,10 @@ const path        = require('path');
 const bodyParser  = require("body-parser");
 const cookieParser = require('cookie-parser');
 const logger      = require('morgan');
-
+const myConnection = require('express-myconnection');
 const indexController = require('./Controller/index.js');
 const userController = require('./Controller/user.js');
-
+const mysql = require('mysql');
 const app = express();
 
 // view engine setup
@@ -19,7 +19,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(compression());
 app.use(express.json());
-
+app.use(myConnection(mysql, {
+      host: 'localhost',
+      user: 'root',
+      password: '',
+      port: 3306,
+      database: 'shareimage'
+}, 'single'));
 app.all('*', function(req, res, next) {
   //设置请求体,支持 post、get、jsonp
   res.header("Access-Control-Allow-Origin", "*");
