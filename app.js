@@ -20,11 +20,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(compression());
 app.use(express.json());
 app.use(myConnection(mysql, {
-      host: 'localhost',
-      user: 'root',
-      password: '',
-      port: 3306,
-      database: 'shareimage'
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  port: 3306,
+  database: 'shareimage'
 }, 'single'));
 app.all('*', function(req, res, next) {
   //设置请求体,支持 post、get、jsonp
