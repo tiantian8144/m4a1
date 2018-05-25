@@ -5,10 +5,9 @@ const bodyParser  = require("body-parser");
 
 const mysql = require('./conf/mysql.js');
 
-const indexController = require('./Controller/index.js');
-const userController = require('./Controller/user.js');
-const registerUserController = require('./Controller/registerUser.js');
-
+const indexController = require('./controller/index.js');
+const userController = require('./controller/user.js');
+const registerUserController = require('./controller/registerUser.js');
 
 const app = express();
 

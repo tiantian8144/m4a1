@@ -11,12 +11,4 @@ const mysqlConf = myConnection(mysql, {
   database: 'shareimage'
 }, 'single');
 
-/*app.use(myConnection(mysql, {
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  port: 3306,
-  database: 'shareimage'
-}, 'single'));*/
-
 module.exports = mysqlConf;

@@ -17,25 +17,7 @@ router.post('/user', function(req, res) {
   let data = {};
   data.listData = listData;
   data.count = count;
-  // res.end(JSON.stringify(data));
   res.send(JSON.stringify(data));
-});
-
-
-router.get('/testMysql',function(req, res, next) {
-  req.getConnection(function(err, conn) {
-    if (err) {
-      return next(err);
-    } else {
-      conn.query('select * from user', [], function(err,result) {
-        if (err) {
-          return next(err);
-        } else {
-          res.json(result); //可以直接把结果集转化Json返回给客户端
-        }
-      });
-    }
-  });
 });
 
 module.exports = router;
