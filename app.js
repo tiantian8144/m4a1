@@ -1,14 +1,15 @@
-const createError = require('http-errors');
 const express     = require('express');
 const compression = require('compression');
 const path        = require('path');
 const bodyParser  = require("body-parser");
-const cookieParser = require('cookie-parser');
-const logger      = require('morgan');
-const myConnection = require('express-myconnection');
+
+const mysql = require('./conf/mysql.js');
+
 const indexController = require('./Controller/index.js');
 const userController = require('./Controller/user.js');
-const mysql = require('mysql');
+const registerUserController = require('./Controller/registerUser.js');
+
+
 const app = express();
 
 // view engine setup
@@ -19,13 +20,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(compression());
 app.use(express.json());
-app.use(myConnection(mysql, {
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  port: 3306,
-  database: 'shareimage'
-}, 'single'));
+app.use(mysql);
+
+
 app.all('*', function(req, res, next) {
   //设置请求体,支持 post、get、jsonp
   res.header("Access-Control-Allow-Origin", "*");
@@ -38,6 +35,7 @@ app.all('*', function(req, res, next) {
 
 app.use('/', indexController);
 app.post('/user', userController);
+app.post('/registerUser', registerUserController);
 
 
 app.use(function(err, req, res, next) {

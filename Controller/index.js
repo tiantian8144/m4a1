@@ -8,17 +8,17 @@ router.get('/', function(req, res, next) {
 
 router.get('/testMysql',function(req, res, next) {
 	req.getConnection(function(err, conn) {
+    if (err) {
+      return next(err);
+    } else {
+      conn.query('select * from user', [], function(err,result) {
         if (err) {
-            return next(err);
+          return next(err);
         } else {
-            conn.query('select * from user', [], function(err,result) {
-                if (err) {
-                    return next(err);
-                } else {
-                    res.json(result); //可以直接把结果集转化Json返回给客户端
-                }
-            });
+          res.json(result); //可以直接把结果集转化Json返回给客户端
         }
-    });
-})
+      });
+    }
+  });
+});
 module.exports = router;
