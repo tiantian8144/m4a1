@@ -33,7 +33,6 @@ app.all('*', function(req, res, next) {
   next();
 });
 
-app.use('/', indexController);
 app.post('/user', userController);
 app.post('/registerUser', registerUserController);
 app.post('/updatePassword', updatePasswordController);
