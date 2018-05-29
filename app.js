@@ -5,7 +5,6 @@ const bodyParser  = require("body-parser");
 
 const mysql = require('./conf/mysql.js');
 
-const indexController = require('./controller/index.js');
 const userController = require('./controller/user.js');
 const registerUserController = require('./controller/registerUser.js');
 const updatePasswordController = require('./controller/updatePassword.js');
