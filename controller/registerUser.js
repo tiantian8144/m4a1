@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
-//post请求
 router.post('/registerUser', function(req, res) {
-  // res.send(JSON.stringify(data));
   const { userName, password, confirm } = req.body.params;
+  let result = {};
   req.getConnection(function(err, conn) {
     if (err) {
       throw err;
@@ -17,12 +16,13 @@ router.post('/registerUser', function(req, res) {
               if (err) {
                 throw err;
               } else {
+                result.code = 200;
+                result.message = "注册成功！";
                 res.json(result);
               }
             });
           } else {
-            let result = {};
-            result.code = 200;
+            result.code = 400;
             result.message = "该用户已注册过，请直接登录";
             res.json(result);
           }

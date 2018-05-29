@@ -8,6 +8,7 @@ const mysql = require('./conf/mysql.js');
 const indexController = require('./controller/index.js');
 const userController = require('./controller/user.js');
 const registerUserController = require('./controller/registerUser.js');
+const updatePasswordController = require('./controller/updatePassword.js');
 
 const app = express();
 
@@ -35,6 +36,7 @@ app.all('*', function(req, res, next) {
 app.use('/', indexController);
 app.post('/user', userController);
 app.post('/registerUser', registerUserController);
+app.post('/updatePassword', updatePasswordController);
 
 
 app.use(function(err, req, res, next) {
