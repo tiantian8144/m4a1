@@ -5,7 +5,7 @@ const bodyParser  = require("body-parser");
 
 const mysql = require('./conf/mysql.js');
 
-const userController = require('./controller/user.js');
+const homeController = require('./controller/home.js');
 const registerUserController = require('./controller/registerUser.js');
 const updatePasswordController = require('./controller/updatePassword.js');
 
@@ -32,7 +32,7 @@ app.all('*', function(req, res, next) {
   next();
 });
 
-app.post('/user', userController);
+app.post('/home', homeController);
 app.post('/registerUser', registerUserController);
 app.post('/updatePassword', updatePasswordController);
 
