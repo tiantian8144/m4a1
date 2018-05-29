@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-router.post('/registerUser', function(req, res) {
+router.post('/register', function(req, res) {
   const { userName, password, confirm } = req.body.params;
-  let result = {};
+  let datas = {};
   req.getConnection(function(err, conn) {
     if (err) {
       throw err;
@@ -16,15 +16,15 @@ router.post('/registerUser', function(req, res) {
               if (err) {
                 throw err;
               } else {
-                result.code = 200;
-                result.message = "注册成功！";
-                res.json(result);
+                datas.code = 200;
+                datas.message = "注册成功！";
+                res.json(datas);
               }
             });
           } else {
-            result.code = 400;
-            result.message = "该用户已注册过，请直接登录";
-            res.json(result);
+            datas.code = 400;
+            datas.message = "该用户已注册过，请直接登录";
+            res.json(datas);
           }
         }
       });

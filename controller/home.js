@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 //post请求
-router.post('/user', function(req, res) {
+router.post('/home', function(req, res) {
   const count = req.body.count;
   let listData = [];
   for (let i = 0; i < count; i++) {
