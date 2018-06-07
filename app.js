@@ -1,15 +1,7 @@
 const express     = require('express');
 const compression = require('compression');
 const path        = require('path');
-const bodyParser  = require("body-parser");
-
-const mysql = require('./conf/mysql.js');
-
-
-const homeController = require('./controller/home.js');
-const loginController = require('./controller/login.js');
-const registerController = require('./controller/register.js');
-const updatePasswordController = require('./controller/updatePassword.js');
+// const bodyParser  = require("body-parser");
 
 const app = express();
 
@@ -18,10 +10,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.urlencoded({ extended: false }));
 app.use(compression());
 app.use(express.json());
-app.use(mysql);
 
 
 app.all('*', function(req, res, next) {
@@ -34,16 +25,33 @@ app.all('*', function(req, res, next) {
   next();
 });
 
-app.post('/home', homeController);
-app.post('/login', loginController);
-app.post('/register', registerController);
-app.post('/updatePassword', updatePasswordController);
+app.get('/home', function(req, res) {
+  const count = 24;
+  // const count = req.body.count;
+  let listData = [];
+  for (let i = 0; i < count; i++) {
+    listData.push({
+      src: '',
+      avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
+      title: `Title Jiang ${i}`,
+      description:'Rise n’ shine and don’t forget to smile',
+      star: i * 2,
+      like: i * 3
+    });
+  }
+  let data = {};
+  data.listData = listData;
+  data.count = count;
+  res.send(JSON.stringify(data));
+});
+app.get('/app', function() {
+  console.log('1');
+});
 
 
 app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
   res.status(err.status || 500);
   res.render('error');
 });
