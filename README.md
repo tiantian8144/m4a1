@@ -8,4 +8,4 @@
 
 4. $ npm start
 
-5. localhost:9000
+5. localhost:9000/app
