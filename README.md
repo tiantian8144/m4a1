@@ -7,3 +7,5 @@
 3. $ npm i
 
 4. $ npm start
+
+5. localhost:9000
