@@ -25,9 +25,8 @@ app.all('*', function(req, res, next) {
   next();
 });
 
-app.get('/home', function(req, res) {
-  const count = 24;
-  // const count = req.body.count;
+app.post('/home', function(req, res) {
+  const count = req.body.count;
   let listData = [];
   for (let i = 0; i < count; i++) {
     listData.push({
